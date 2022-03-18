@@ -21,18 +21,18 @@ function randomNumberGen(min, max) {
 function validNumber(min, max) {
 
     for (let i = 0; i < 5; i++) {
-        let valid = randomNumberGen(min, max);
-        if (valid === numbersSimonArray[i]) {
-            valid = randomNumberGen(min, max);
-        } else {
-            numbersSimonArray.push(valid);
-            simon.innerText = `Memorize Numbers: ${numbersSimonArray}`;
-        }
-    }
 
-    userInput.classList.remove('d-none');
-    userInput.innerText = `Numbers Guessed: ${rightNumbers}`;
-    userInput.innerText = `Numbers Wrong: ${wrongNumbers}`;
+        while (numbersSimonArray.length < 5) {
+            let valid = randomNumberGen(min, max);
+            if (valid === numbersSimonArray[i]) {
+                valid = randomNumberGen(min, max);
+            } else {
+                numbersSimonArray.push(valid);
+                startGame.innerText = `Memorize Numbers: ${numbersSimonArray}`;
+            }
+        }
+
+    }
 
 }
 
@@ -40,21 +40,57 @@ function validNumber(min, max) {
 function askNumbersToUser(max) {
 
     for (let i = 0; i < max; i++) {
+
         let insertNumber = parseInt(prompt('Inserisci il numero in posizione ' + (i + 1)));
+
+        while (isNaN(insertNumber)) {
+
+            insertNumber = parseInt(prompt('Inserisci il numero in posizione ' + (i + 1)));
+        }
+
         if (insertNumber !== numbersSimonArray[i]) {
             wrongNumbers.push(insertNumber);
         } else {
+            score++;
             rightNumbers.push(insertNumber);
         }
+
     }
+
     return rightNumbers, wrongNumbers;
 
 }
+
 
 //azzeramento array
 function timer() {
 
     askNumbersToUser(5);
+
+    userRight.innerText = `Numbers Guessed: ${rightNumbers}`;
+    userWrong.innerText = `Numbers Wrong: ${wrongNumbers}`;
+    userScore.innerText = `Total Score: ${score}`;
+}
+
+//restart game
+function restart() {
+
+    numbersSimonArray = [];
+
+    rightNumbers = [];
+
+    wrongNumbers = [];
+
+    userRight.innerText = '';
+    userWrong.innerText = '';
+    userScore.innerText = '';
+
+    validNumber(1, 100);
+
+    setTimeout(() => startGame.innerText = '', 4800);
+
+    setTimeout(timer, 5000);
+
 }
 
 // ---------- / FUNZIONI ---------- //
@@ -65,8 +101,17 @@ function timer() {
 //assegno ad una const il div contenente i numeri generati
 const simon = document.getElementById('simon');
 
+
 //richiamo il div degli array dati dagli insert
-const userInput = document.getElementById('userInput');
+const startGame = document.getElementById('asknumbers');
+
+//richiamo i tag <h>
+const userRight = document.getElementById('right');
+const userWrong = document.getElementById('wrong');
+let userScore = document.getElementById('score');
+
+//richiamo button
+const restartButton = document.getElementById('restart');
 
 // ---------- / DOM ELEMENTS ---------- //
 
@@ -82,15 +127,21 @@ let rightNumbers = [];
 //array numeri sbagliati
 let wrongNumbers = [];
 
-console.log(rightNumbers);
-console.log(wrongNumbers);
+//score
+let score = 0;
+
 
 //recall functions
 validNumber(1, 100);
 
-setTimeout(() => simon.innerText = '', 4500);
+setTimeout(() => startGame.innerText = '', 4800);
 
 setTimeout(timer, 5000);
+
+restartButton.addEventListener('click', function () {
+    restart();
+});
+
 
 console.log(numbersSimonArray);
 

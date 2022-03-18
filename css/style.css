@@ -26,17 +26,28 @@ body {
 }
 
 #simon {
-    width: 350px;
-    height: 150px;
+    min-width: 700px;
+    min-height: 200px;
     background-color: rgb(108, 158, 214);
     color: whitesmoke;
     border: 2px solid azure;
     border-radius: 25px;
     font-size: 30px;
     text-align: center;
-    padding: 35px 0;
+    padding: 50px;
 }
 
-.d-none {
-    display: none;
+.button {
+    background: orange;
+    color: white;
+    border-radius: 25px;
+    padding: 5px 20px;
+    margin-top: 25px;
+}
+
+.button:hover {
+    border-style: inset;
+    border: 2px solid whitesmoke;
+    transition: 0.5s;
+    box-shadow: 0px 0px 10px 1px azure;
 }
