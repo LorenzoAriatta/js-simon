@@ -7,6 +7,7 @@ console.log('JS OK!');
 
 // ---------- FUNZIONI ---------- //
 
+//RNG range 1 / 100
 function randomNumberGen(min, max) {
 
     const range = (max - min) + 1;
@@ -16,6 +17,7 @@ function randomNumberGen(min, max) {
 
 }
 
+// check dei numeri generati, se non presenti nell'array li pusho
 function validNumber(min, max) {
 
     for (let i = 0; i < 5; i++) {
@@ -27,6 +29,7 @@ function validNumber(min, max) {
         }
     }
 
+    simon.innerText = `Memorize Numbers: ${numbersSimonArray}`;
 
 }
 
@@ -35,15 +38,18 @@ function validNumber(min, max) {
 
 // ---------- DOM ELEMENTS ---------- //
 
-
+//assegno ad una const il div contenente i numeri generati
+const simon = document.getElementById('simon');
 
 // ---------- / DOM ELEMENTS ---------- //
 
 
 // ---------- GENERAL VAR/FUNCTIONS ---------- //
 
+//array numeri generati
 let numbersSimonArray = [];
 
+//recall functions
 randomNumberGen(1, 100);
 validNumber(1, 100);
 console.log(numbersSimonArray);

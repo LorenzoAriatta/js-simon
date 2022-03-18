@@ -4,3 +4,35 @@
     box-sizing: border-box;
     font-family: sans-serif;
 }
+
+body {
+    background-color: rgb(13, 14, 48);
+}
+
+.container {
+    width: 50%;
+    margin: 100px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#title {
+    margin-top: 50px;
+    font-size: 50px;
+    color: white;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+#simon {
+    width: 350px;
+    height: 150px;
+    background-color: rgb(108, 158, 214);
+    color: whitesmoke;
+    border: 2px solid azure;
+    border-radius: 25px;
+    font-size: 30px;
+    text-align: center;
+    padding: 35px 0;
+}
