@@ -26,11 +26,35 @@ function validNumber(min, max) {
             valid = randomNumberGen(min, max);
         } else {
             numbersSimonArray.push(valid);
+            simon.innerText = `Memorize Numbers: ${numbersSimonArray}`;
         }
     }
 
-    simon.innerText = `Memorize Numbers: ${numbersSimonArray}`;
+    //simon.innerText = `Memorize Numbers: ${numbersSimonArray}`;
 
+}
+
+//function linkata al timer
+function askNumbersToUser(max) {
+
+    for (let i = 0; i < max; i++) {
+        while (!isNaN(insertNumber)) {
+            insertNumber = parseInt(prompt('Inserisci il numero in posizione ' + (i + 1)));
+        }
+        if (insertNumber !== numbersSimonArray[i]) {
+            wrongNumbers.push(insertNumber);
+        } else {
+            rightNumbers.push(insertNumber);
+        }
+    }
+    return rightNumbers, wrongNumbers;
+
+}
+
+//azzeramento array
+function setArraySimon() {
+    simon.innerText = '';
+    askNumbersToUser(5);
 }
 
 // ---------- / FUNZIONI ---------- //
@@ -49,9 +73,16 @@ const simon = document.getElementById('simon');
 //array numeri generati
 let numbersSimonArray = [];
 
+//array numeri giusti
+let rightNumbers = [];
+
+//array numeri sbagliati
+let wrongNumbers = [];
+
 //recall functions
 randomNumberGen(1, 100);
 validNumber(1, 100);
+setTimeout(setArraySimon, 5000);
 console.log(numbersSimonArray);
 
 // ---------- / GENERAL VAR/FUNCTIONS ---------- //
