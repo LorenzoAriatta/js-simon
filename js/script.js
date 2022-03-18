@@ -30,7 +30,9 @@ function validNumber(min, max) {
         }
     }
 
-    //simon.innerText = `Memorize Numbers: ${numbersSimonArray}`;
+    userInput.classList.remove('d-none');
+    userInput.innerText = `Numbers Guessed: ${rightNumbers}`;
+    userInput.innerText = `Numbers Wrong: ${wrongNumbers}`;
 
 }
 
@@ -38,9 +40,7 @@ function validNumber(min, max) {
 function askNumbersToUser(max) {
 
     for (let i = 0; i < max; i++) {
-        while (!isNaN(insertNumber)) {
-            insertNumber = parseInt(prompt('Inserisci il numero in posizione ' + (i + 1)));
-        }
+        let insertNumber = parseInt(prompt('Inserisci il numero in posizione ' + (i + 1)));
         if (insertNumber !== numbersSimonArray[i]) {
             wrongNumbers.push(insertNumber);
         } else {
@@ -52,8 +52,8 @@ function askNumbersToUser(max) {
 }
 
 //azzeramento array
-function setArraySimon() {
-    simon.innerText = '';
+function timer() {
+
     askNumbersToUser(5);
 }
 
@@ -64,6 +64,9 @@ function setArraySimon() {
 
 //assegno ad una const il div contenente i numeri generati
 const simon = document.getElementById('simon');
+
+//richiamo il div degli array dati dagli insert
+const userInput = document.getElementById('userInput');
 
 // ---------- / DOM ELEMENTS ---------- //
 
@@ -79,10 +82,16 @@ let rightNumbers = [];
 //array numeri sbagliati
 let wrongNumbers = [];
 
+console.log(rightNumbers);
+console.log(wrongNumbers);
+
 //recall functions
-randomNumberGen(1, 100);
 validNumber(1, 100);
-setTimeout(setArraySimon, 5000);
+
+setTimeout(() => simon.innerText = '', 4500);
+
+setTimeout(timer, 5000);
+
 console.log(numbersSimonArray);
 
 // ---------- / GENERAL VAR/FUNCTIONS ---------- //

@@ -36,3 +36,7 @@ body {
     text-align: center;
     padding: 35px 0;
 }
+
+.d-none {
+    display: none;
+}
